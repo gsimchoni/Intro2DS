@@ -1,0 +1,9 @@
+*.pyc
+
+__pycache__/
+.idea/
+.cache/
+.ipython/
+.local/
+jovyan/
+.bash_history
