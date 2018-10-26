@@ -23,13 +23,17 @@
 `cd C:/Intro2DS`
 
 2. Input:
+
 Windows command-line: `docker run -p 8888:8888 -v %cd%:/home/joyvan jupyter/tensorflow-notebook`
-Windows Powershell, Linux, Mac: `docker run -p 8888:8888 -v  $(pwd):/home/joyvan jupyter/tensorflow-notebook`
+
+Windows Powershell, Linux, Mac: `docker run -p 8888:8888 -v  ${PWD}:/home/joyvan jupyter/tensorflow-notebook`
 
 This should download the `tensorflow-notebook` image from [Docker Hub](https://hub.docker.com/) (the first time), mount your current working library (C:\Intro2DS) and start `jupyter notebook`.
+
 You should receive a message as if you were running `jupyter notebook` locally, to open the notebooks in your browser:
 
 > to login with a token:
+
 >       http://(8aa11443e34c or 127.0.0.1):8888/?token=94aab8e6c6a21606eeba9a76c3b4fe660f2287d270598
 
 Copy the URL into your browser and you should be able to see the `Intro2DS` directory and start working with notebooks, including saving your work locally.
