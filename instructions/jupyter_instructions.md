@@ -30,6 +30,8 @@ Windows Powershell, Linux, Mac: `docker run -p 8888:8888 -v  ${PWD}:/home/joyvan
 
 This should download the `tensorflow-notebook` image from [Docker Hub](https://hub.docker.com/) (the first time), mount your current working library (C:\Intro2DS) and start `jupyter notebook`.
 
+Sometimes Docker on Windows will ask your Windows password (or Microsoft account password if you don't have one) to share the folder. Do it.
+
 You should receive a message as if you were running `jupyter notebook` locally, to open the notebooks in your browser:
 
 > to login with a token:
