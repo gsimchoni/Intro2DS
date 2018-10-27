@@ -2,7 +2,7 @@
 
 0. Create a docker account in order to install (just email & password):  
 
-https://www.docker.com/
+ https://www.docker.com/
 
 1. install docker:
 
