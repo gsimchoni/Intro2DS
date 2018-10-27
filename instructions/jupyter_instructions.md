@@ -8,7 +8,7 @@
 
 3. Click on "Download ZIP"
 
-### With Git (assumingyou have Git installed, and if not see `git_instructions.md` in this folder)
+### With Git (assuming you have Git installed, and if not see `git_instructions.md` in this folder)
 
 1. In terminal, go where you want to `Intro2DS` directory to be
 
