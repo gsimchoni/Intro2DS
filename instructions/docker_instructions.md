@@ -1,6 +1,6 @@
 # How to Install Docker
 
-0. Create a docker account in order to install (just email & password):
+0. Create a docker account in order to install (just email & password):  
 
 https://www.docker.com/
 
@@ -34,18 +34,12 @@ https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-fla
 This should download the hello-world image from [Docker Hub](https://hub.docker.com/) (the first time) and print some welcoming messages:
 
 > Unable to find image 'hello-world:latest' locally
-
-> latest: Pulling from library/hello-world
-
-> d1725b59e92d: Pull complete
-
-> Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788
-
-> Status: Downloaded newer image for hello-world:latest
-
-> Hello from Docker!
-
-> ..."
+latest: Pulling from library/hello-world
+d1725b59e92d: Pull complete
+Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788
+Status: Downloaded newer image for hello-world:latest
+Hello from Docker!
+..."
 
 4. If `docker version` worked but `docker run hello-world` didn't: try `docker login` first to enter your account details.
 
@@ -54,3 +48,15 @@ This should download the hello-world image from [Docker Hub](https://hub.docker.
 `docker run -ti ubuntu`
 
 Will download the latest Ubuntu image from Docker Hub, run it and there you go, you're working in Linux!
+
+6. See running containers:
+
+`docker ps`
+
+7. Stopping/removing a container:
+
+`docker stop <container_id>`
+
+or
+
+`docker rm <container_id>`
