@@ -6,13 +6,14 @@
 
 1. install docker:
 
-	Windows: https://docs.docker.com/docker-for-windows/install/
+	Windows*: https://docs.docker.com/docker-for-windows/install/
 
 	Mac OS: https://docs.docker.com/docker-for-mac/install/
 
 	Linux: https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
 
 	\* Requires Windows 10. If not, install Docker Toolbox: https://docs.docker.com/toolbox/overview/
+	
 	\* In Windows requires restarting, might want to save your work before.
 
 2. Run in a terminal*:
