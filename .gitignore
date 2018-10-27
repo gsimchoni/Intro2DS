@@ -1,5 +1,4 @@
 *.pyc
-
 __pycache__/
 .idea/
 .cache/
@@ -9,3 +8,4 @@ jovyan/
 .bash_history
 .jupyter/
 .conda/
+.ipynb_checkpoints/
