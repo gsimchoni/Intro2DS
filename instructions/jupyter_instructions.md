@@ -50,7 +50,7 @@
 
 	You should receive a message as if you were running `jupyter notebook` locally, to open the notebooks in your browser:
 
-	> to login with a token:
+	> to login with a token:  
 	>       http://(8aa11443e34c or 127.0.0.1):8888/?token=94aab8e6c6a21606eeba9a76c3b4fe660f2287d270598
 
 	Copy the URL into your browser and you should be able to see the `Intro2DS` directory and start working with notebooks, including saving your work locally.
