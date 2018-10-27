@@ -8,3 +8,4 @@ __pycache__/
 jovyan/
 .bash_history
 .jupyter/
+.conda/
