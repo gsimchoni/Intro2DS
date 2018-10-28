@@ -26,7 +26,7 @@
 
 	Windows command-line: `docker run -it -p 8888:8888 -v %cd%:/home/jovyan --entrypoint=bash jupyter/tensorflow-notebook`
 
-	Windows Powershell, Linux, Mac: `docker run -it -p 8888:8888 -v  ${PWD}:/home/joyvan --entrypoint=bash jupyter/tensorflow-notebook`
+	Windows Powershell, Linux, Mac: `docker run -it -p 8888:8888 -v  ${PWD}:/home/jovyan --entrypoint=bash jupyter/tensorflow-notebook`
 
 	This should download the `tensorflow-notebook` image from [Docker Hub](https://hub.docker.com/) (the first time).
 
