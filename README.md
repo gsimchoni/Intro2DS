@@ -6,9 +6,9 @@ For instructions on how to set course environment with git and Docker, see: [ins
 
 The recommended order of instructions is:
 
-1. [git_github_instructions](instructions/git_github_instructions.ipynb)
-2. [docker_instructions](instructions/docker_instructions.ipynb)
-3. [jupyter_instructions](instructions/jupyter_instructions.ipynb)
+1. [git_github_instructions](instructions/git_github_instructions.md)
+2. [docker_instructions](instructions/docker_instructions.md)
+3. [jupyter_instructions](instructions/jupyter_instructions.md)
 
 If you need a python refresher, see: [misc/intro2python](misc/intro2python).
 
