@@ -1,0 +1,5 @@
+name: Intro2DS
+channels:
+  - defaults
+dependencies:
+  - python=3.6.6
