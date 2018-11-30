@@ -9,3 +9,4 @@ jovyan/
 .jupyter/
 .conda/
 .ipynb_checkpoints/
+.keras
