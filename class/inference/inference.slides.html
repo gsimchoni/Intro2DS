@@ -13338,11 +13338,11 @@ P(mean_diff &gt;= 16 | H0) =  0.11
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[88]:</div>
+<div class="prompt input_prompt">In&nbsp;[96]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">LB</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="mi">9</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">UB</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="mi">9</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">LB</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="mi">9</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">UB</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="mi">9</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;[</span><span class="si">{LB: .3f}</span><span class="s1">, </span><span class="si">{UB: .3f}</span><span class="s1">]&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -13384,7 +13384,19 @@ P(mean_diff &gt;= 16 | H0) =  0.11
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="CI-for-Mean-Demo">CI for Mean Demo<a class="anchor-link" href="#CI-for-Mean-Demo">&#182;</a></h3>
+<h3 id="CI-for-Mean-Demo">CI for Mean Demo<a class="anchor-link" href="#CI-for-Mean-Demo">&#182;</a></h3><p>A demo where $X \sim Exp(3)$, sampling distribution of the mean with $n = 30$:</p>
+<p><img src = "images/ci_exp3_n30.gif"></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="CI-for-Mean-Demo">CI for Mean Demo<a class="anchor-link" href="#CI-for-Mean-Demo">&#182;</a></h3><p>A demo where $X \sim Exp(3)$, sampling distribution of the mean with $n = 5$:</p>
+<p><img src = "images/ci_exp3_n5.gif"></p>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -13395,16 +13407,59 @@ P(mean_diff &gt;= 16 | H0) =  0.11
 <h3 id="Building-the-CI:-T-Test">Building the CI: T-Test<a class="anchor-link" href="#Building-the-CI:-T-Test">&#182;</a></h3><p>For One-Sample T-Test:</p>
 <p>$[\overline{X} + t_{n-1;2.5}\frac{S}{\sqrt{n}}, \overline{X} + t_{n-1;97.5}\frac{S}{\sqrt{n}}]$ or $\overline{X} \pm t_{n-1,97.5}\frac{S}{\sqrt{n}}$ is a 95% CI for $\mu$</p>
 <p>For Two-Samples T-Test, equal variances assumed:</p>
-<p>$[(\overline{X} - \overline{Y}) + t_{n_x+n_y-2;2.5}\frac{S_p}{\sqrt{n}}, (\overline{X} - \overline{Y}) + t_{n_x+n_y-2;97.5}\frac{S_p}{\sqrt{n}}]$ or $(\overline{X} - \overline{Y}) \pm t_{n_x+n_y-2,97.5}\frac{S_p}{\sqrt{n}}$ is a 95% CI for $\mu$</p>
+<p>$[(\overline{X} - \overline{Y}) + t_{n_x+n_y-2;2.5}\sqrt{\frac{S_p^2}{n_x} +\frac{S_p^2}{n_y}}, (\overline{X} - \overline{Y}) + t_{n_x+n_y-2;97.5}\sqrt{\frac{S_p^2}{n_x} +\frac{S_p^2}{n_y}}]$ or $(\overline{X} - \overline{Y}) \pm t_{n_x+n_y-2,97.5}\sqrt{\frac{S_p^2}{n_x} +\frac{S_p^2}{n_y}}$ is a 95% CI for $\mu$</p>
 
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Relation-between-CI-and-Hypothesis-Testing">Relation between CI and Hypothesis Testing<a class="anchor-link" href="#Relation-between-CI-and-Hypothesis-Testing">&#182;</a></h3>
+<h3 id="Girls-and-Boys-Shirts---Confidence-Interval-for-Means-Difference">Girls and Boys Shirts - Confidence Interval for Means Difference<a class="anchor-link" href="#Girls-and-Boys-Shirts---Confidence-Interval-for-Means-Difference">&#182;</a></h3><p>Recall we got: $\overline{X} - \overline{Y} = 16; \space n_x = 30; \space n_y = 30; S^2_p = 2574$</p>
+<p>95% CI for $\mu_x - \mu_y$:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[95]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">LB</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">girls_red</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">boys_red</span><span class="p">))</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">n_x</span> <span class="o">+</span> <span class="n">n_y</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S2_p</span><span class="o">/</span><span class="n">n_x</span> <span class="o">+</span> <span class="n">S2_p</span><span class="o">/</span><span class="n">n_y</span><span class="p">)</span>
+<span class="n">UB</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">girls_red</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">boys_red</span><span class="p">))</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">n_x</span> <span class="o">+</span> <span class="n">n_y</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S2_p</span><span class="o">/</span><span class="n">n_x</span> <span class="o">+</span> <span class="n">S2_p</span><span class="o">/</span><span class="n">n_y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;[</span><span class="si">{LB: .1f}</span><span class="s1">, </span><span class="si">{UB: .1f}</span><span class="s1">]&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[-10.3,  42.2]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Power">Power<a class="anchor-link" href="#Power">&#182;</a></h2>
 </div>
 </div>
 </div></section></section>
