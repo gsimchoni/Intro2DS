@@ -12458,9 +12458,7 @@ Min null mean diff: -49.81
 </li>
 <li><p>From Z-Test to T-test</p>
 </li>
-<li><p>T-Test</p>
-</li>
-<li><p>P-Value</p>
+<li><p>One-Sample, Two-Samples T-Test</p>
 </li>
 <li><p>Confidence Intervals</p>
 </li>
@@ -13091,7 +13089,7 @@ SD of mean differences:  11.86
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="From-Z-Test-to-T-Test">From Z-Test to T-Test<a class="anchor-link" href="#From-Z-Test-to-T-Test">&#182;</a></h2><p>But $\sigma$ isn't known!</p>
-<p>It turns out that in general, for a Standard Normal RV $\frac{\overline{X} - \mu}{\sigma / \sqrt{n}}$, once $\sigma$ is unknown and is replaced by the unbiased estimate $S = \sqrt{\frac{1}{n - 1}\sum{(X_i - \overline{X})^2}}$:</p>
+<p>It turns out that in general, for a Standard Normal RV $\frac{\overline{X} - \mu}{\sigma / \sqrt{n}}$, once $\sigma$ is unknown and is replaced by the unbiased estimator $S = \sqrt{\frac{1}{n - 1}\sum{(X_i - \overline{X})^2}}$:</p>
 <p>$\frac{\overline{X} - \mu}{S / \sqrt{n}} \sim t_{n - 1}$</p>
 <p>This statistic distributes "$t$ with $n - 1$ degrees of freedoms (df)", hence called the T statistic.</p>
 <p>Notice that last result does not depend on $n$, you need large $n$ for using CLT in the first place (unless you assume the original distribution to be Normal), and for higher power (see later).</p>
@@ -13155,7 +13153,7 @@ SD of mean differences:  11.86
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="One-Sample-T-Test">One Sample T-Test<a class="anchor-link" href="#One-Sample-T-Test">&#182;</a></h2><p>Again: Under $H0$, with a large sample $n$, according to CLT: $\frac{\overline{X} - \mu}{\sigma / \sqrt{n}} \sim N(0, 1)$</p>
 <p>Now the $\sigma$ is unknown. $\mu$ is known under the null hypothesis, often $H0 : \mu = 0$</p>
-<p>We replace $\sigma$ by its estimate: $S = \sqrt{\frac{1}{n_x - 1}\sum{(X_i - \overline{X})^2}}$</p>
+<p>We replace $\sigma$ by its estimator: $S = \sqrt{\frac{1}{n_x - 1}\sum{(X_i - \overline{X})^2}}$</p>
 <p>We get:</p>
 <p>$\frac{\overline{X} - \mu_{H0}}{\sqrt{\frac{S^2}{n}}} \sim t_{n - 1}$</p>
 <p>And you can perform a t-test using e.g. <code>stats.ttest_1samp(x, 0)</code>.</p>
@@ -13171,7 +13169,7 @@ SD of mean differences:  11.86
 <p>In general: $X$ and $Y$ need not come from the same distribution, the difference in means need not be 0, their variances need not be equal and their sample sizes need not be equal:</p>
 <p>$\frac{(\overline{X} - \overline{Y}) - (\mu_x - \mu_y)}{\sqrt{\frac{\sigma_x^2}{n_x} +\frac{\sigma_y^2}{n_y}}} \sim N(0, 1)$</p>
 <p>Now the $\sigma_x$ and $\sigma_y$ are unknown. $\mu_x$ and $\mu_y$ are also unknown but often under $H0: \mu_x - \mu_y = 0$</p>
-<p>We replace $\sigma_x$ by its estimate: $S_x = \sqrt{\frac{1}{n_x - 1}\sum{(X_i - \overline{X})^2}}$ and the same for $\sigma_y$.</p>
+<p>We replace $\sigma_x$ by its estimator: $S_x = \sqrt{\frac{1}{n_x - 1}\sum{(X_i - \overline{X})^2}}$ and the same for $\sigma_y$.</p>
 <p>We get:</p>
 <p>$\frac{\overline{X} - \overline{Y} - (\mu_x - \mu_y)}{\sqrt{\frac{S_x^2}{n_x} +\frac{S_y^2}{n_y}}} \sim t_{?}$</p>
 
@@ -13186,7 +13184,7 @@ SD of mean differences:  11.86
 <p>$S^2_p = \frac{(n_x - 1)S^2_x + (n_y - 1)S^2_y}{n_x + n_y - 2}$</p>
 <p>And the distribution is t with $n_x + n_y - 2$ degrees of freedom:</p>
 <p>$\frac{\overline{X} - \overline{Y} - (\mu_x - \mu_y)}{\sqrt{\frac{S_p^2}{n_x} +\frac{S_p^2}{n_y}}} \sim t_{n_x+n_y -2}$</p>
-<h3 id="Unequal-Variances-Assumed">Unequal Variances Assumed<a class="anchor-link" href="#Unequal-Variances-Assumed">&#182;</a></h3><p>We keep the SE estimate of $\sqrt{\frac{S_x^2}{n_x} +\frac{S_y^2}{n_y}}$:</p>
+<h3 id="Unequal-Variances-Assumed">Unequal Variances Assumed<a class="anchor-link" href="#Unequal-Variances-Assumed">&#182;</a></h3><p>We keep the SE estimator of $\sqrt{\frac{S_x^2}{n_x} +\frac{S_y^2}{n_y}}$:</p>
 <p>$\frac{\overline{X} - \overline{Y} - (\mu_x - \mu_y)}{\sqrt{\frac{S_x^2}{n_x} +\frac{S_y^2}{n_y}}} \sim t_{df'}$</p>
 <p>Where: $df' ={\frac {\left({\frac {s_{1}^{2}}{n_{1}}}+{\frac {s_{2}^{2}}{n_{2}}}\right)^{2}}{{\frac {\left(s_{1}^{2}/n_{1}\right)^{2}}{n_{1}-1}}+{\frac {\left(s_{2}^{2}/n_{2}\right)^{2}}{n_{2}-1}}}}$</p>
 
@@ -13297,6 +13295,116 @@ P(mean_diff &gt;= 16 | H0) =  0.11
 <p>Notice the T-test p-value of 11% is greater than the Z-test p-value of 9%, which makes sense:</p>
 <p>Gave up the known variance assumption, added uncertainty (the variance is now in itself a RV), got the t distribution with "heavier" tails, need more extreme values to impress.</p>
 
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Confidence-Intervals-(CI)">Confidence Intervals (CI)<a class="anchor-link" href="#Confidence-Intervals-(CI)">&#182;</a></h2><p>One (of a few) problem with p-value: it is not informative.</p>
+<p>With large enough sample size any result can become "significant" (why?).</p>
+<p>Statistical significance is not scientific significance.</p>
+<p>Often we would prefer reporting what the actual mean $\mu$ (or means difference $\mu_x - \mu_y$) was, to show it was "interesting".</p>
+<p>But since our sample mean $\overline{X}$ (or sample means difference $\overline{X} - \overline{Y}$) is most probably WRONG, it comes with uncertainty, we report a Confidence Interval:</p>
+<p>"$\mu$ is within [10, 20] with 95% level of confidence"</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Building-the-CI:-Z-Test">Building the CI: Z-Test<a class="anchor-link" href="#Building-the-CI:-Z-Test">&#182;</a></h3><p>In general: for a random sample $X$ from distribution with unknown parameter $\theta$, $[LB(X), UB(X)]$ is a $100(1-\alpha)\%$ CI for $\theta$ if $P(LB(X) &lt; \theta &lt; UB(X)) = 1 - \alpha$</p>
+<p>Usually: $\alpha = 0.05$ and we would build a <em>symmetric</em> CI around some $\hat{X}$ estimator of $\theta$, like $\overline{X}$</p>
+<p>For the Z-test:</p>
+<p>$P(Z_{2.5} &lt; \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} &lt; Z_{97.5}) = P(\overline{X} + Z_{2.5}\frac{\sigma}{\sqrt{n}} &lt; \mu &lt; \overline{X} + Z_{97.5}\frac{\sigma}{\sqrt{n}}) = 0.95$ where $Z_q$ is the $q$th percentile of the $N(0, 1)$ distribution</p>
+<p>$\implies [\overline{X} + Z_{2.5}\frac{\sigma}{\sqrt{n}}, \overline{X} + Z_{97.5}\frac{\sigma}{\sqrt{n}}]$ or $\overline{X} \pm 1.96\frac{\sigma}{\sqrt{n}}$ is a 95% CI for $\mu$</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="CI-for-Waiting-Time-for-Train">CI for Waiting Time for Train<a class="anchor-link" href="#CI-for-Waiting-Time-for-Train">&#182;</a></h3><p>Recall: Under $H0$ $X \sim Exp(3)$ so: $\sigma = \frac{1}{3}$</p>
+<p>We got: $\overline{X} = \frac{4}{9}; \space n = 30;$</p>
+<p>95% CI for $\mu$:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[88]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">LB</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="mi">9</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">UB</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="mi">9</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;[</span><span class="si">{LB: .3f}</span><span class="s1">, </span><span class="si">{UB: .3f}</span><span class="s1">]&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[ 0.325,  0.564]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Most common misconception of CI: "The probability that $\mu$ is within [0.33, 0.56] is 95%"</p>
+<p>No. $\mu$ is either within the CI or not, $\mu$ is a parameter, not a RV!</p>
+<p>But what <em>does</em> it mean?</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="CI-for-Mean-Demo">CI for Mean Demo<a class="anchor-link" href="#CI-for-Mean-Demo">&#182;</a></h3>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Building-the-CI:-T-Test">Building the CI: T-Test<a class="anchor-link" href="#Building-the-CI:-T-Test">&#182;</a></h3><p>For One-Sample T-Test:</p>
+<p>$[\overline{X} + t_{n-1;2.5}\frac{S}{\sqrt{n}}, \overline{X} + t_{n-1;97.5}\frac{S}{\sqrt{n}}]$ or $\overline{X} \pm t_{n-1,97.5}\frac{S}{\sqrt{n}}$ is a 95% CI for $\mu$</p>
+<p>For Two-Samples T-Test, equal variances assumed:</p>
+<p>$[(\overline{X} - \overline{Y}) + t_{n_x+n_y-2;2.5}\frac{S_p}{\sqrt{n}}, (\overline{X} - \overline{Y}) + t_{n_x+n_y-2;97.5}\frac{S_p}{\sqrt{n}}]$ or $(\overline{X} - \overline{Y}) \pm t_{n_x+n_y-2,97.5}\frac{S_p}{\sqrt{n}}$ is a 95% CI for $\mu$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Relation-between-CI-and-Hypothesis-Testing">Relation between CI and Hypothesis Testing<a class="anchor-link" href="#Relation-between-CI-and-Hypothesis-Testing">&#182;</a></h3>
 </div>
 </div>
 </div></section></section>
