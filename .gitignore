@@ -10,3 +10,4 @@ jovyan/
 .conda/
 .ipynb_checkpoints/
 .keras
+.wget-hsts
